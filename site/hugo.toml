@@ -3,3 +3,9 @@ languageCode = "ja"
 title = "Yamashiro Machijiten"
 
 disableKinds = ["taxonomy", "term"]
+
+[permalinks.page]
+term-categories = "/categories/:slug/"
+
+[permalinks.section]
+term-categories = "/categories/"

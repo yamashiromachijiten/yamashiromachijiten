@@ -1,0 +1,18 @@
+{{ define "main" }}
+  <article>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.kana }}<p class="meta">{{ . }}</p>{{ end }}
+
+    {{ with .Params.categories }}
+      <ul class="tag-list">
+        {{ range . }}
+          {{ with site.GetPage (printf "/term-categories/%s" .) }}
+            <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+          {{ end }}
+        {{ end }}
+      </ul>
+    {{ end }}
+
+    {{ .Content }}
+  </article>
+{{ end }}

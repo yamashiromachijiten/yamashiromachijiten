@@ -19,15 +19,33 @@ collections:
           - { label: "説明", name: "description", widget: "text" }
           - { label: "本文", name: "body", widget: "markdown" }
 
-  - name: "posts"
-    label: "記事"
-    folder: "site/content/posts"
+  - name: "categories"
+    label: "カテゴリ"
+    folder: "site/content/term-categories"
+    path: "{{slug}}/_index"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "カテゴリ名", name: "title", widget: "string" }
+      - { label: "説明", name: "description", widget: "text", required: false }
+      - { label: "本文", name: "body", widget: "markdown", required: false }
+
+  - name: "terms"
+    label: "用語"
+    folder: "site/content/terms"
     path: "{{slug}}/index"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{slug}}"
     fields:
-      - { label: "タイトル", name: "title", widget: "string" }
-      - { label: "公開日", name: "date", widget: "datetime" }
-      - { label: "説明", name: "description", widget: "text", required: false }
-      - { label: "下書き", name: "draft", widget: "boolean", default: false }
-      - { label: "本文", name: "body", widget: "markdown" }
+      - { label: "用語", name: "title", widget: "string" }
+      - { label: "よみがな", name: "kana", widget: "string" }
+      - label: "カテゴリ"
+        name: "categories"
+        widget: "relation"
+        collection: "categories"
+        search_fields: ["title"]
+        display_fields: ["title"]
+        value_field: "{{slug}}"
+        multiple: true
+        required: false
+      - { label: "意味の解説文", name: "body", widget: "markdown" }

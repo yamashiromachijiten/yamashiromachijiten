@@ -1,0 +1,31 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  {{ with .Params.description }}<p>{{ . }}</p>{{ end }}
+  {{ .Content }}
+
+  {{ if eq .File.Path "term-categories/_index.md" }}
+    <ul class="item-list">
+      {{ range .Pages.ByTitle }}
+        <li class="item-card">
+          <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+          {{ with .Params.description }}<p>{{ . }}</p>{{ end }}
+        </li>
+      {{ else }}
+        <li>まだカテゴリがありません。</li>
+      {{ end }}
+    </ul>
+  {{ else }}
+    {{ $slug := path.Base .File.Dir }}
+    <ul class="item-list">
+      {{ range sort (where (where site.RegularPages "Section" "terms") "Params.categories" "intersect" (slice $slug)) "Params.kana" }}
+        <li class="item-card">
+          <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+          {{ with .Params.kana }}<p class="meta">{{ . }}</p>{{ end }}
+          {{ with .Summary }}<p>{{ . }}</p>{{ end }}
+        </li>
+      {{ else }}
+        <li>このカテゴリの用語はまだありません。</li>
+      {{ end }}
+    </ul>
+  {{ end }}
+{{ end }}
