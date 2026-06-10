@@ -44,6 +44,17 @@
         });
       };
 
+      const hideUncategorizedCategory = () => {
+        if (window.location.hash !== '#/collections/categories') {
+          return;
+        }
+
+        document.querySelectorAll('a[href$="/categories/entries/uncategorized"]').forEach((element) => {
+          const item = element.closest('li') || element.closest('[role="listitem"]') || element;
+          item.style.display = 'none';
+        });
+      };
+
       const updateAddCategoryLink = () => {
         const existingLink = document.querySelector('.add-category-link');
         const isNewTermPage = window.location.hash === '#/collections/terms/new';
@@ -66,6 +77,7 @@
 
       const updateAdminUi = () => {
         hideMediaMenu();
+        hideUncategorizedCategory();
         updateAddCategoryLink();
       };
 
