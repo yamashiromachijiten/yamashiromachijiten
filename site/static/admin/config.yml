@@ -24,7 +24,7 @@ collections:
   - name: "categories"
     label: "カテゴリ"
     folder: "site/content/term-categories"
-    path: "{{slug}}/_index"
+    path: "{{slug}}"
     create: true
     slug: "{{slug}}"
     fields:

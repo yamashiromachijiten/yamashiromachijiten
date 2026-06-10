@@ -5,7 +5,7 @@ title = "やましろ街事典"
 disableKinds = ["taxonomy", "term"]
 
 [permalinks.page]
-term-categories = "/categories/:slug/"
+term-categories = "/categories/:filename/"
 
 [permalinks.section]
 term-categories = "/categories/"
