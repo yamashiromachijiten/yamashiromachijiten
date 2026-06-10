@@ -4,8 +4,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Content Manager</title>
+    <style>
+      a[href="#/media"],
+      a[href$="/media"] {
+        display: none !important;
+      }
+    </style>
   </head>
   <body>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script>
+      const hideMediaMenu = () => {
+        document.querySelectorAll('header a, header button, nav a, nav button').forEach((element) => {
+          const text = element.textContent.trim().toLowerCase();
+          const href = element.getAttribute('href') || '';
+
+          if (text === 'media' || text === 'メディア' || href === '#/media' || href.endsWith('/media')) {
+            const item = element.closest('li') || element;
+            item.style.display = 'none';
+          }
+        });
+      };
+
+      hideMediaMenu();
+      new MutationObserver(hideMediaMenu).observe(document.body, { childList: true, subtree: true });
+    </script>
   </body>
 </html>
