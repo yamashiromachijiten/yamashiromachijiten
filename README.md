@@ -21,7 +21,7 @@ npm run start
 ローカルで Decap CMS から保存まで試す場合は、別ターミナルで Decap のローカルバックエンドを起動します。
 
 ```sh
-npx decap-server
+npm run cms
 ```
 
 ## ビルド

@@ -2,7 +2,8 @@ backend:
   name: git-gateway
   branch: main
 
-local_backend: true
+local_backend:
+  url: "http://localhost:8082/api/v1"
 locale: "ja"
 
 # Decap CMS requires a media folder in config even when this project has no image fields.

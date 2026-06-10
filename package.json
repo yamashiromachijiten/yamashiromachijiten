@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "hugo server -s site -D --renderToMemory",
+    "cms": "PORT=8082 npx --yes decap-server",
     "build": "hugo -s site -d ../dist --cleanDestinationDir"
   }
 }
