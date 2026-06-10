@@ -4,6 +4,10 @@ backend:
 
 local_backend: true
 
+# Decap CMS requires a media folder in config even when this project has no image fields.
+media_folder: "site/static/media"
+public_folder: "/media"
+
 collections:
   - name: "home"
     label: "ホーム"
