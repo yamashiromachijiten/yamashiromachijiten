@@ -1,10 +1,10 @@
 {{ define "main" }}
   <h1>カテゴリ</h1>
   <ul class="item-list">
-    {{ range .Pages.ByTitle }}
+    {{ range sort .Pages "Params.kana" }}
       <li class="item-card">
         <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-        {{ with .Params.description }}<p>{{ . }}</p>{{ end }}
+        {{ with .Params.kana }}<p class="meta">{{ . }}</p>{{ end }}
       </li>
     {{ else }}
       <li>まだカテゴリがありません。</li>
