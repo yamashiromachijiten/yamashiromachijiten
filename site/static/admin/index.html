@@ -9,6 +9,24 @@
       a[href$="/media"] {
         display: none !important;
       }
+
+      .add-category-link {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        z-index: 1000;
+        padding: 10px 16px;
+        border-radius: 4px;
+        color: #fff;
+        background: #3a69c7;
+        font: 600 14px/1.4 system-ui, sans-serif;
+        text-decoration: none;
+        box-shadow: 0 2px 8px rgb(0 0 0 / 20%);
+      }
+
+      .add-category-link:hover {
+        background: #2f57a6;
+      }
     </style>
   </head>
   <body>
@@ -26,8 +44,34 @@
         });
       };
 
-      hideMediaMenu();
-      new MutationObserver(hideMediaMenu).observe(document.body, { childList: true, subtree: true });
+      const updateAddCategoryLink = () => {
+        const existingLink = document.querySelector('.add-category-link');
+        const isNewTermPage = window.location.hash === '#/collections/terms/new';
+
+        if (!isNewTermPage) {
+          existingLink?.remove();
+          return;
+        }
+
+        if (!existingLink) {
+          const link = document.createElement('a');
+          link.className = 'add-category-link';
+          link.href = '#/collections/categories/new';
+          link.target = '_blank';
+          link.rel = 'noopener';
+          link.textContent = 'カテゴリを追加';
+          document.body.appendChild(link);
+        }
+      };
+
+      const updateAdminUi = () => {
+        hideMediaMenu();
+        updateAddCategoryLink();
+      };
+
+      updateAdminUi();
+      window.addEventListener('hashchange', updateAdminUi);
+      new MutationObserver(updateAdminUi).observe(document.body, { childList: true, subtree: true });
     </script>
   </body>
 </html>
