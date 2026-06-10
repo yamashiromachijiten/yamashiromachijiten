@@ -1,5 +1,8 @@
 node_modules/
 dist/
+site/public/
+site/resources/
+site/.hugo_build.lock
 site/data/webpack.json
 /npm-debug.log
 yarn-error.log
