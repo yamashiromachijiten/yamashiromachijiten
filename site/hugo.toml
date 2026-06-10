@@ -1,6 +1,6 @@
 baseURL = "/"
 languageCode = "ja"
-title = "Yamashiro Machijiten"
+title = "やましろ街事典"
 
 disableKinds = ["taxonomy", "term"]
 

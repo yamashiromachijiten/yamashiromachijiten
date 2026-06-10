@@ -1,4 +1,4 @@
-# Yamashiro Machijiten
+# やましろ街事典
 
 Hugo と Decap CMS を学ぶための最小構成です。
 
