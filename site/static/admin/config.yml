@@ -3,6 +3,7 @@ backend:
   branch: main
 
 local_backend: true
+locale: "ja"
 
 # Decap CMS requires a media folder in config even when this project has no image fields.
 media_folder: "site/static/media"
