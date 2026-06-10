@@ -13,7 +13,6 @@ Hugo と Decap CMS を学ぶための最小構成です。
 ## ローカル起動
 
 ```sh
-npm install
 npm run start
 ```
 

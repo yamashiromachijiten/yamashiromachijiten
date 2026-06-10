@@ -2,6 +2,9 @@
   command = "npm run build"
   publish = "dist"
 
+[build.environment]
+  HUGO_VERSION = "0.143.1"
+
 [dev]
   framework = "hugo"
   targetPort = 1313

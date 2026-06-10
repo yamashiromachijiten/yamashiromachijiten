@@ -5,8 +5,5 @@
   "scripts": {
     "start": "hugo server -s site -D --renderToMemory",
     "build": "hugo -s site -d ../dist --cleanDestinationDir"
-  },
-  "devDependencies": {
-    "hugo-bin": "^0.98.0"
   }
 }
