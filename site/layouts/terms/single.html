@@ -3,15 +3,19 @@
     <h1>{{ .Title }}</h1>
     {{ with .Params.kana }}<p class="meta">{{ . }}</p>{{ end }}
 
-    {{ with .Params.categories }}
-      <ul class="tag-list">
+    <ul class="tag-list">
+      {{ with .Params.categories }}
         {{ range . }}
           {{ with site.GetPage (printf "/term-categories/%s" .) }}
             <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
           {{ end }}
         {{ end }}
-      </ul>
-    {{ end }}
+      {{ else }}
+        {{ with site.GetPage "/term-categories/uncategorized" }}
+          <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+        {{ end }}
+      {{ end }}
+    </ul>
 
     {{ .Content }}
   </article>

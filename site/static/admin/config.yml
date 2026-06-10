@@ -48,4 +48,5 @@ collections:
         value_field: "{{slug}}"
         multiple: true
         required: false
+        default: ["uncategorized"]
       - { label: "意味の解説文", name: "body", widget: "markdown" }

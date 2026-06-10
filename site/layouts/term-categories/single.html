@@ -3,14 +3,21 @@
   {{ with .Params.kana }}<p class="meta">{{ . }}</p>{{ end }}
 
   {{ $slug := .File.BaseFileName }}
+  {{ $terms := where site.RegularPages "Section" "terms" }}
+  {{ $count := 0 }}
   <ul class="item-list">
-    {{ range sort (where (where site.RegularPages "Section" "terms") "Params.categories" "intersect" (slice $slug)) "Params.kana" }}
-      <li class="item-card">
-        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-        {{ with .Params.kana }}<p class="meta">{{ . }}</p>{{ end }}
-        {{ with .Summary }}<p>{{ . }}</p>{{ end }}
-      </li>
-    {{ else }}
+    {{ range sort $terms "Params.kana" }}
+      {{ $categories := .Params.categories | default (slice) }}
+      {{ if or (in $categories $slug) (and (eq $slug "uncategorized") (eq (len $categories) 0)) }}
+        {{ $count = add $count 1 }}
+        <li class="item-card">
+          <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+          {{ with .Params.kana }}<p class="meta">{{ . }}</p>{{ end }}
+          {{ with .Summary }}<p>{{ . }}</p>{{ end }}
+        </li>
+      {{ end }}
+    {{ end }}
+    {{ if eq $count 0 }}
       <li>このカテゴリの用語はまだありません。</li>
     {{ end }}
   </ul>
