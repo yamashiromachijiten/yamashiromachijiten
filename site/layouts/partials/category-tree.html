@@ -1,0 +1,24 @@
+{{ $categories := .categories }}
+{{ $parent := .parent }}
+{{ $children := slice }}
+
+{{ range $categories }}
+  {{ $categoryParent := .Params.parent | default "" }}
+  {{ if eq $categoryParent $parent }}
+    {{ $children = $children | append . }}
+  {{ end }}
+{{ end }}
+
+{{ if gt (len $children) 0 }}
+  <ul class="category-tree">
+    {{ range sort $children "Params.kana" }}
+      <li>
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        {{ with .Params.kana }}<p class="meta">{{ . }}</p>{{ end }}
+        {{ partial "category-tree.html" (dict "categories" $categories "parent" .File.BaseFileName) }}
+      </li>
+    {{ end }}
+  </ul>
+{{ else if eq $parent "" }}
+  <p>まだカテゴリがありません。</p>
+{{ end }}
