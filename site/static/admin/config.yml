@@ -44,7 +44,7 @@ collections:
         widget: "relation"
         collection: "categories"
         search_fields: ["title", "kana"]
-        display_fields: ["title", "kana"]
+        display_fields: ["title"]
         value_field: "{{slug}}"
         multiple: true
         required: false
